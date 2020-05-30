@@ -28,7 +28,7 @@ import PropTypes from 'prop-types';
 const BACKGROUND = 'background-color: #20232a';
 
 const Header = ({ background, title, isAuthed, signIn, signOut }) => (
-    <Container style={{backgroundColor: background}}>
+    <Container fluid="xl" style={{backgroundImage: "linear-gradient(116deg, #08AEEA 0%, #2AF598 100%)"}}>
       <h1>
         {title}
       </h1>
