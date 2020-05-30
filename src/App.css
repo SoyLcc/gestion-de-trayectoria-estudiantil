@@ -33,3 +33,8 @@ p {
     margin: 0px !important;
     width: auto;
 }
+.container2 {
+  margin-top: 100px;
+  display: flex !important;
+  width: auto;
+}
