@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import AsignatureCard from './components/AsignatureCard'
+import SubjectCard from './components/SubjectCard'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export default class App extends React.Component {
   }
 
   loadData() {
-      fetch('http://www.mocky.io/v2/5ed0d4533500004a00ff9f9e')
+      fetch('http://www.mocky.io/v2/5ed4700a3300005f00f7a191')
         .then(response => response.json())
         .then(data => {
           console.log(data);
@@ -26,10 +26,10 @@ export default class App extends React.Component {
     this.loadData()
   }
 
-  renderAsignaturas(materias) {
+  renderSubjects(subjects) {
     const items = [];
-    for (const [index, materia] of materias.entries()) {
-      items.push(<AsignatureCard className="col" key={index} name={materia.asignatura} eje={materia.eje} isApproved={this.state.isShow} />)
+    for (const [index, subject] of subjects.entries()) {
+      items.push(<SubjectCard className="col" key={index} subject={subject} />)
     }
     return items;
   }
@@ -39,11 +39,11 @@ export default class App extends React.Component {
       <Container fluid="xl">
         <div className="container1">
           { 
-            this.state.data.map((materias, i) => {
+            this.state.data.map((subjects, i) => {
               return ( 
                 <div className="row1" key={i} >
                   { 
-                    this.renderAsignaturas(materias)
+                    this.renderSubjects(subjects)
                   }
                 </div>
               )
