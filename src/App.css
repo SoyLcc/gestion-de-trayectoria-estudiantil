@@ -34,7 +34,11 @@ p {
     width: auto;
 }
 .container2 {
-  margin-top: 100px;
   display: flex !important;
   width: auto;
+}
+
+.semester-text {
+  text-align: center;
+  font-family: 'Spectral', serif;
 }
