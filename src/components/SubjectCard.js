@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const AXIS = {
   BASICO: 'B',
@@ -7,6 +8,20 @@ const AXIS = {
   ESPECIALIZANTE: 'E',
   INTEGRADOR: 'I'
 }
+
+const CardContainer = styled.div`
+  width: 118px !important;
+  height: 50px !important;
+  border: 1px solid;
+  font-size: 9px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif !important;
+`;
 
 const SubjectCard = ({ subject }) => {
   let color;
@@ -26,9 +41,9 @@ const SubjectCard = ({ subject }) => {
     color = "#9962F8";
   }
   return (
-    <div className="col" style={{backgroundColor:color}}>
+    <CardContainer style={{backgroundColor:color}}>
       { subject.name }
-    </div>
+    </CardContainer>
   );
 } 
 
