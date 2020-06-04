@@ -27,14 +27,41 @@ function PollsOpened() {
         </div>
     );
 }
+function LastPollReuslts() {
+    return (
+        <div class="card text-center" style={{border: "1px solid rgba(0,0,0,.160)"}}>
+            <h5 class="card-header">Resultados Encuesta 2020-1</h5>
+            <div class="card-body">
+                <h5 class="card-title">Resultados</h5>
+                <p class="card-text">Resultados...</p>
+            </div>
+        </div>
+    );
+}
 
 export default class PollsHome extends Component {
     render() {
         return (
             <Content>
                 <div className="container">
-                    { PollsClosed() }
-                    { PollsOpened() }
+                    <div className="row">
+                        <div className="col-md-2"></div>
+                        <div className="col-md-8">
+                            { PollsClosed() }
+                        </div>
+                    </div>
+                    <div className="row pt-5">
+                        <div className="col-md-2"></div>
+                        <div className="col-md-8">
+                            { PollsOpened() }
+                        </div>
+                    </div>
+                    <div className="row pt-5">
+                        <div className="col-md-2"></div>
+                        <div className="col-md-8">
+                            { LastPollReuslts() }
+                        </div>
+                    </div>
                 </div>
             </Content>
         )
