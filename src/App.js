@@ -5,6 +5,9 @@ import Navigation from './components/Navigation';
 import StudentHome from './components/student/StudentHome';
 import ProfileHome from './components/profile/ProfileHome';
 import PollsHome from './components/polls/PollsHome';
+import adminPolls from './components/admin/adminPolls';
+import adminStudents from './components/admin/adminStudents';
+import adminSubjects from './components/admin/adminSubjects';
 
 export default class App extends React.Component {
 
@@ -15,6 +18,10 @@ export default class App extends React.Component {
         <Route path="/" exact  component={ StudentHome } />
         <Route path="/poll" component={ PollsHome } />
         <Route path="/Profile" component={ ProfileHome } />
+
+        <Route path="/admin/polls" exact  component={ adminPolls } />
+        <Route path="/admin/students" component={ adminStudents } />
+        <Route path="/admin/subjects" component={ adminSubjects } />
       </Router>
     )
   }
