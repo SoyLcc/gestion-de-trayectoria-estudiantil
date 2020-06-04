@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col'
 
-import SubjectCard from '../SubjectCard'
+import SubjectCard from './SubjectCard'
 
 const semester = ['I','II','III','IV','V','VI','VII','VIII'];
 
