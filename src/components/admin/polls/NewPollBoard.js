@@ -169,6 +169,8 @@ export default class NewPollBoard extends Component {
             const newState = this.state;
             newState[this.id2List[sInd]] = result[sInd];
             newState[this.id2List[dInd]] = result[dInd];
+
+            this.props.parentCallback(this.state.poll);
         }
     };
 
