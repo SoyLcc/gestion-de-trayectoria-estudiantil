@@ -1,9 +1,17 @@
-import React, { Component, useState } from 'react'
+import React, { Component, setState, state } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import axios from 'axios'
 import './BoardStyles.css';
 
 const axis = ['Eje Común','Eje Basico','Eje Profesional','Eje Especializante','Eje Integrador'];
+
+const AXIS = {
+    BASICO: 'B',
+    COMUN: 'C',
+    PROFESIONAL: 'P',
+    ESPECIALIZANTE: 'E',
+    INTEGRADOR: 'I'
+  }
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -40,14 +48,14 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 const grid = 8;
 
-const getItemStyle = (isDragging, draggableStyle) => ({
+const getItemStyle = (isDragging, color, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: 'none',
-    padding: grid * 2,
+    padding: 12,
     margin: `0 0 ${grid}px 0`,
 
     // change background colour if dragging
-    background: isDragging ? 'lightgreen' : 'grey',
+    background: isDragging ? 'lightgreen' : color,
 
     // styles we need to apply on draggables
     ...draggableStyle
@@ -119,6 +127,9 @@ export default class NewPollBoard extends Component {
             return;
         }
 
+        const sInd = source.droppableId;
+        const dInd = destination.droppableId;
+
         if (source.droppableId === destination.droppableId) {
             const items = reorder(
                 this.getList(source.droppableId),
@@ -155,22 +166,18 @@ export default class NewPollBoard extends Component {
                 source,
                 destination
             );
-
-            this.setState({
-                common: result.droppable1,
-                basic: result.droppable2,
-                profesional: result.droppable3,
-                specialist: result.droppable4,
-                integral: result.droppable5,
-                poll: result.droppable6
-            });
+            const newState = this.state;
+            newState[this.id2List[sInd]] = result[sInd];
+            newState[this.id2List[dInd]] = result[dInd];
         }
     };
 
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
+        let color;
         return (
+            
             // <div className="container">             
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="droppable1">
@@ -179,7 +186,24 @@ export default class NewPollBoard extends Component {
                                 <h5>{axis[0]}</h5>
                                 <div className={'body-item-scrollable'}>
                                     {
-                                        this.state.common.map((subject, index) => (
+                                        this.state.common.map((subject, index) => {
+                                            let color;
+                                            if(subject.axis === AXIS.BASICO) {
+                                                color = "#F8F8F9";
+                                            }
+                                            if(subject.axis === AXIS.COMUN) {
+                                                color = "#F0F061";
+                                            }
+                                            if(subject.axis === AXIS.PROFESIONAL) {
+                                                color = "#FB9B63";
+                                            }
+                                            if(subject.axis === AXIS.ESPECIALIZANTE) {
+                                                color = "#98F662";
+                                            }
+                                            if(subject.axis === AXIS.INTEGRADOR) {
+                                                color = "#9962F8";
+                                            }
+                                            return (
                                             <Draggable
                                                 key={subject._id}
                                                 draggableId={subject._id}
@@ -191,13 +215,14 @@ export default class NewPollBoard extends Component {
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
                                                             snapshot.isDragging,
+                                                            color,
                                                             provided.draggableProps.style
                                                         )}>
                                                         {subject.name}
                                                     </div>
                                                 )}
                                             </Draggable>
-                                        ))
+                                        )})
                                     }
                                 </div>
                                 {provided.placeholder}
@@ -210,7 +235,24 @@ export default class NewPollBoard extends Component {
                                 <h5>{axis[1]}</h5>
                                 <div className={'body-item-scrollable'}>
                                     {
-                                        this.state.basic.map((subject, index) => (
+                                         this.state.basic.map((subject, index) => {
+                                            let color;
+                                            if(subject.axis === AXIS.BASICO) {
+                                                color = "#F8F8F9";
+                                            }
+                                            if(subject.axis === AXIS.COMUN) {
+                                                color = "#F0F061";
+                                            }
+                                            if(subject.axis === AXIS.PROFESIONAL) {
+                                                color = "#FB9B63";
+                                            }
+                                            if(subject.axis === AXIS.ESPECIALIZANTE) {
+                                                color = "#98F662";
+                                            }
+                                            if(subject.axis === AXIS.INTEGRADOR) {
+                                                color = "#9962F8";
+                                            }
+                                            return (
                                             <Draggable
                                                 key={subject._id}
                                                 draggableId={subject._id}
@@ -222,13 +264,14 @@ export default class NewPollBoard extends Component {
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
                                                             snapshot.isDragging,
+                                                            color,
                                                             provided.draggableProps.style
                                                         )}>
                                                         {subject.name}
                                                     </div>
                                                 )}
                                             </Draggable>
-                                        ))
+                                        )})
                                     }
                                 </div>
                                 {provided.placeholder}
@@ -241,7 +284,24 @@ export default class NewPollBoard extends Component {
                                 <h5>{axis[2]}</h5>
                                 <div className={'body-item-scrollable'}>
                                     {
-                                        this.state.profesional.map((subject, index) => (
+                                         this.state.profesional.map((subject, index) => {
+                                            let color;
+                                            if(subject.axis === AXIS.BASICO) {
+                                                color = "#F8F8F9";
+                                            }
+                                            if(subject.axis === AXIS.COMUN) {
+                                                color = "#F0F061";
+                                            }
+                                            if(subject.axis === AXIS.PROFESIONAL) {
+                                                color = "#FB9B63";
+                                            }
+                                            if(subject.axis === AXIS.ESPECIALIZANTE) {
+                                                color = "#98F662";
+                                            }
+                                            if(subject.axis === AXIS.INTEGRADOR) {
+                                                color = "#9962F8";
+                                            }
+                                            return (
                                             <Draggable
                                                 key={subject._id}
                                                 draggableId={subject._id}
@@ -253,13 +313,14 @@ export default class NewPollBoard extends Component {
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
                                                             snapshot.isDragging,
+                                                            color,
                                                             provided.draggableProps.style
                                                         )}>
                                                         {subject.name}
                                                     </div>
                                                 )}
                                             </Draggable>
-                                        ))
+                                        )})
                                     }
                                 </div>
                                 {provided.placeholder}
@@ -272,7 +333,24 @@ export default class NewPollBoard extends Component {
                                 <h5>{axis[3]}</h5>
                                 <div className={'body-item-scrollable'}>
                                     {
-                                        this.state.specialist.map((subject, index) => (
+                                         this.state.specialist.map((subject, index) => {
+                                            let color;
+                                            if(subject.axis === AXIS.BASICO) {
+                                                color = "#F8F8F9";
+                                            }
+                                            if(subject.axis === AXIS.COMUN) {
+                                                color = "#F0F061";
+                                            }
+                                            if(subject.axis === AXIS.PROFESIONAL) {
+                                                color = "#FB9B63";
+                                            }
+                                            if(subject.axis === AXIS.ESPECIALIZANTE) {
+                                                color = "#98F662";
+                                            }
+                                            if(subject.axis === AXIS.INTEGRADOR) {
+                                                color = "#9962F8";
+                                            }
+                                            return (
                                             <Draggable
                                                 key={subject._id}
                                                 draggableId={subject._id}
@@ -284,13 +362,14 @@ export default class NewPollBoard extends Component {
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
                                                             snapshot.isDragging,
+                                                            color,
                                                             provided.draggableProps.style
                                                         )}>
                                                         {subject.name}
                                                     </div>
                                                 )}
                                             </Draggable>
-                                        ))
+                                        )})
                                     }
                                 </div>
                                 {provided.placeholder}
@@ -303,7 +382,24 @@ export default class NewPollBoard extends Component {
                                 <h5>{axis[4]}</h5>
                                 <div className={'body-item-scrollable'}>
                                     {
-                                        this.state.integral.map((subject, index) => (
+                                         this.state.integral.map((subject, index) => {
+                                            let color;
+                                            if(subject.axis === AXIS.BASICO) {
+                                                color = "#F8F8F9";
+                                            }
+                                            if(subject.axis === AXIS.COMUN) {
+                                                color = "#F0F061";
+                                            }
+                                            if(subject.axis === AXIS.PROFESIONAL) {
+                                                color = "#FB9B63";
+                                            }
+                                            if(subject.axis === AXIS.ESPECIALIZANTE) {
+                                                color = "#98F662";
+                                            }
+                                            if(subject.axis === AXIS.INTEGRADOR) {
+                                                color = "#9962F8";
+                                            }
+                                            return (
                                             <Draggable
                                                 key={subject._id}
                                                 draggableId={subject._id}
@@ -315,13 +411,14 @@ export default class NewPollBoard extends Component {
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
                                                             snapshot.isDragging,
+                                                            color,
                                                             provided.draggableProps.style
                                                         )}>
                                                         {subject.name}
                                                     </div>
                                                 )}
                                             </Draggable>
-                                        ))
+                                        )})
                                     }
                                 </div>
                                 {provided.placeholder}
@@ -334,7 +431,24 @@ export default class NewPollBoard extends Component {
                                 <h5>Propuesta</h5>
                                 <div className={'body-item-scrollable'}>
                                     {
-                                        this.state.poll.map((subject, index) => (
+                                        this.state.poll.map((subject, index) => {
+                                            let color;
+                                            if(subject.axis === AXIS.BASICO) {
+                                                color = "#F8F8F9";
+                                            }
+                                            if(subject.axis === AXIS.COMUN) {
+                                                color = "#F0F061";
+                                            }
+                                            if(subject.axis === AXIS.PROFESIONAL) {
+                                                color = "#FB9B63";
+                                            }
+                                            if(subject.axis === AXIS.ESPECIALIZANTE) {
+                                                color = "#98F662";
+                                            }
+                                            if(subject.axis === AXIS.INTEGRADOR) {
+                                                color = "#9962F8";
+                                            }
+                                            return (
                                             <Draggable
                                                 key={subject._id}
                                                 draggableId={subject._id}
@@ -346,13 +460,14 @@ export default class NewPollBoard extends Component {
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
                                                             snapshot.isDragging,
+                                                            color,
                                                             provided.draggableProps.style
                                                         )}>
                                                         {subject.name}
                                                     </div>
                                                 )}
                                             </Draggable>
-                                        ))
+                                        )})
                                     }
                                 </div>
                                 {provided.placeholder}
