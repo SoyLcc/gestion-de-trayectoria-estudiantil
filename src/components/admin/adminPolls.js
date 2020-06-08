@@ -21,33 +21,34 @@ export default class adminPolls extends Component {
         const res = await axios.get('http://localhost:4000/api/polls/');
         this.setState({polls:res.data});
     }
-    updateData = async () => {
-        const res = await axios.update('http://localhost:4000/api/polls/', {});
-        this.loadData();
-    }
     
     componentDidMount() {
         this.loadData();
     }
     
-    async handleClick(id) {
-        await axios.delete('http://localhost:4000/api/polls/'+id)
+    async handleClick(type,poll) {
+        if(type === "delete") {
+            await axios.delete('http://localhost:4000/api/polls/'+poll._id)
             .then(function (response) {
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
+        }
+        if(type === "status") {
+            await axios.put('http://localhost:4000/api/polls/'+poll._id, {isActive: !poll.isActive})
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
         this.loadData();
     }
     render() {
-        function OpenCloseButton(props) {
-            const isActive = props.isActive;
-            if (isActive) {
-              return <Button variant="primary" size="sm">Cerrar</Button>;
-            }
-            return <Button variant="primary" size="sm">Abrir</Button>;
-        }
+        console.log(this.state.polls.length == 0);
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -63,36 +64,45 @@ export default class adminPolls extends Component {
                                             <Link to="/admin/newpoll">
                                                 <Button variant="success" size="sm" className="float-right mb-2">Crear Encuesta</Button>
                                             </Link>
-                                            <Table striped bordered hover variant="dark" size="sm">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Titulo</th>
-                                                        <th>Descripción</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {
-                                                        this.state.polls.map((poll, i) => {
-                                                            return (
-                                                                <tr key={i}>
-                                                                    <td>{i}</td>
-                                                                    <td>{poll.title}</td>
-                                                                    <td>{poll.description}</td>
-                                                                    <td>
-                                                                        <OpenCloseButton isActive={poll.isActive}/>
-                                                                        {' '}
-                                                                        <Button variant="primary" size="sm">Resultados</Button>{' '}
-                                                                        <Button variant="warning" size="sm">Editar</Button>{' '}
-                                                                        <Button variant="danger" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick(poll._id) } }>Eliminar</Button>
-                                                                    </td>
-                                                                </tr>
-                                                            )
-                                                        })
-                                                    }
-                                                </tbody>
-                                            </Table>
+                                            {this.state.polls.length != 0  && 
+                                                <Table striped bordered hover variant="dark" size="sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Titulo</th>
+                                                            <th>Descripción</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {   
+                                                            this.state.polls.map((poll, i) => {
+                                                                return (
+                                                                    <tr key={i}>
+                                                                        <td>{i}</td>
+                                                                        <td>{poll.title}</td>
+                                                                        <td>{poll.description}</td>
+                                                                        <td>
+                                                                            <Button variant="primary" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('status',poll) } }>
+                                                                                {poll.isActive ? "Cerrar" : "Abrir"}
+                                                                            </Button>{' '}
+                                                                            {' '}
+                                                                            <Button variant="primary" size="sm">Resultados</Button>{' '}
+                                                                            <Button variant="warning" size="sm">Editar</Button>{' '}
+                                                                            <Button variant="danger" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',poll) } }>Eliminar</Button>
+                                                                        </td>
+                                                                    </tr>
+                                                                )
+                                                            })
+                                                        }
+                                                    </tbody>    
+                                                </Table>
+                                            }
+                                            {this.state.polls.length === 0 && 
+                                                <div class="alert alert-danger mt-5" role="alert">
+                                                    Aun no hay Encuestas!
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
