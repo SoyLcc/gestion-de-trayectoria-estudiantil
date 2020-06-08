@@ -13,7 +13,7 @@ const AdminContent = styled.div`
     margin-left: 130px;
 `;
 
-export default class newPoll extends Component {
+export default class NewPoll extends Component {
     constructor(props) {
         super(props)
         this.state = {
