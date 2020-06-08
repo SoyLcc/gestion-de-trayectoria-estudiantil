@@ -53,6 +53,8 @@ export default class newPoll extends Component {
     }
 
     render() {
+        const { title, description, subjects } = this.state;
+        const enabled = title.length > 0 && description.length > 0 && subjects.length > 0;
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -82,7 +84,7 @@ export default class newPoll extends Component {
                                             <NewPollBoard parentCallback = {this.callbackFunction}/>
                                     </div>
                                     <div className="card-footer">
-                                        <Button variant="success" size="sm" className="float-right mb-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick() } }>Crear Encuesta</Button>
+                                        <Button variant="success" size="sm" className="float-right mb-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick() } } disabled={!enabled}>Crear Encuesta</Button>
                                     </div>
                                 </div>
                             </div>
