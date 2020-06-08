@@ -8,7 +8,7 @@ import PollsHome from './components/polls/PollsHome';
 import adminPolls from './components/admin/adminPolls';
 import adminStudents from './components/admin/adminStudents';
 import adminSubjects from './components/admin/adminSubjects';
-import newPoll from './components/admin/polls/newPoll';
+import NewPoll from './components/admin/polls/NewPoll';
 
 export default class App extends React.Component {
 
@@ -21,7 +21,7 @@ export default class App extends React.Component {
         <Route path="/Profile" component={ ProfileHome } />
 
         <Route path="/admin/polls" exact  component={ adminPolls } />
-        <Route path="/admin/newPoll" exact  component={ newPoll } />
+        <Route path="/admin/newPoll" exact  component={ NewPoll } />
         <Route path="/admin/students" component={ adminStudents } />
         <Route path="/admin/subjects" component={ adminSubjects } />
       </Router>
