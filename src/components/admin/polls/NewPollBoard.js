@@ -1,4 +1,4 @@
-import React, { Component, setState, state } from 'react'
+import React, { Component } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import axios from 'axios'
 import './BoardStyles.css';
@@ -12,13 +12,6 @@ const AXIS = {
     ESPECIALIZANTE: 'E',
     INTEGRADOR: 'I'
   }
-
-// fake data generator
-const getItems = (count, offset = 0) =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k + offset}`,
-        content: `item ${k + offset}`
-    }));
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -177,7 +170,6 @@ export default class NewPollBoard extends Component {
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
-        let color;
         return (
             
             // <div className="container">             
