@@ -1,17 +1,10 @@
-import React, { Component, setState, state } from 'react'
+import React, { Component } from 'react'
 
 import NewPollBoard from './NewPollBoard';
 import NavigationLeft from '../NavigationLeft'
 import Button from 'react-bootstrap/Button'
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import axios from 'axios'
-
-const AdminContent = styled.div`
-    width: 100%;
-    padding: 20px;  
-    background-color: #e4f6f3;
-    margin-left: 130px;
-`;
 
 export default class NewPoll extends Component {
     constructor(props) {
