@@ -48,7 +48,6 @@ export default class adminPolls extends Component {
         this.loadData();
     }
     render() {
-        console.log(this.state.polls.length == 0);
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -64,7 +63,7 @@ export default class adminPolls extends Component {
                                             <Link to="/admin/newpoll">
                                                 <Button variant="success" size="sm" className="float-right mb-2">Crear Encuesta</Button>
                                             </Link>
-                                            {this.state.polls.length != 0  && 
+                                            {this.state.polls.length !== 0  && 
                                                 <Table striped bordered hover variant="dark" size="sm">
                                                     <thead>
                                                         <tr>
