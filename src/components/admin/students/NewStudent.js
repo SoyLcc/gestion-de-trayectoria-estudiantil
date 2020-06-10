@@ -8,9 +8,11 @@ export default class NewStudent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: "",
-            description: "",
-            subjects: []
+            student_id: "",
+            name: "",
+            lastname: "",
+            password: "",
+            role: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -26,13 +28,19 @@ export default class NewStudent extends Component {
             [event.target.name]: value
         });
     }
+    toggleChange = () => {
+        this.setState({
+          role: !this.state.role,
+        });
+      }
     
     handleClick() {
-        axios.post('http://localhost:4000/api/polls/', {
-                title: this.state.title,
-                description: this.state.description,
-                isActive: true,
-                subjects: this.state.subjects
+        axios.post('http://localhost:4000/api/users/', {
+                student_id: this.state.student_id,
+                name: this.state.name,
+                lastname: this.state.lastname,
+                password: this.state.password,
+                role: this.state.role ? "admin" : "user",
             })
             .then(function (response) {
                 console.log(response);
@@ -44,8 +52,8 @@ export default class NewStudent extends Component {
     }
 
     render() {
-        const { title, description, subjects } = this.state;
-        const enabled = title.length > 0 && description.length > 0 && subjects.length > 0;
+        const { student_id, name, lastname, password } = this.state;
+        const enabled = student_id.length > 0 && name.length > 0 && lastname.length > 0 && password.length > 0;
         return (
             <div className="container">
                 <NavigationLeft/>
@@ -57,35 +65,35 @@ export default class NewStudent extends Component {
                             <div className="card-body">
                                 <form>
                                     <div className="form-group row">
-                                        <label htmlfor="staticEmail" className="col-sm-3 col-form-label">Expediente:</label>
+                                        <label htmlFor="staticEmail" className="col-sm-3 col-form-label">Expediente:</label>
                                         <div className="col-sm-9">
-                                            <input name="title" type="text" className="form-control" value={this.state.title} onChange={ this.handleChange}/>
+                                            <input name="student_id" type="text" className="form-control" value={this.state.student_id} onChange={ this.handleChange }/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlfor="staticEmail" className="col-sm-3 col-form-label">Nombre:</label>
+                                        <label htmlFor="staticEmail" className="col-sm-3 col-form-label">Nombre:</label>
                                         <div className="col-sm-9">
-                                            <input name="title" type="text" className="form-control" value={this.state.title} onChange={ this.handleChange}/>
+                                            <input name="name" type="text" className="form-control" value={this.state.name} onChange={ this.handleChange }/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlfor="staticEmail" className="col-sm-3 col-form-label">Apellidos:</label>
+                                        <label htmlFor="staticEmail" className="col-sm-3 col-form-label">Apellidos:</label>
                                         <div className="col-sm-9">
-                                            <input name="description" type="text" className="form-control" value={this.state.description} onChange={this.handleChange}/>
+                                            <input name="lastname" type="text" className="form-control" value={this.state.lastname} onChange={this.handleChange }/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlfor="staticEmail" className="col-sm-3 col-form-label" >Contraseña:</label>
+                                        <label htmlFor="staticEmail" className="col-sm-3 col-form-label" >Contraseña:</label>
                                         <div className="col-sm-9">
-                                            <input name="description" type="text" className="form-control" value={this.state.description} onChange={this.handleChange}/>
+                                            <input name="password" type="text" className="form-control" value={this.state.password} onChange={this.handleChange }/>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label htmlfor="staticEmail" className="col-sm-3 col-form-label">Administrador:</label>
+                                    <div className="form-group row">
+                                        <label htmlFor="staticEmail" className="col-sm-3 col-form-label">Administrador:</label>
                                         <div className="col-sm-9">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <input type="checkbox" aria-label="Checkbox for following text input"/>
+                                            <div className="input-group-append">
+                                                <div className="input-group-text">
+                                                    <input type="checkbox" name="role" checked={this.state.role} onChange={this.toggleChange }/>
                                                 </div>
                                             </div>
                                         </div>
@@ -95,7 +103,7 @@ export default class NewStudent extends Component {
                             <div className="card-body" style={{display:"flex"}}>
                             </div>
                             <div className="card-footer">
-                                <Button variant="success" size="sm" className="float-right mb-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick() } } disabled={!enabled}>Crear Encuesta</Button>
+                                <Button variant="success" size="sm" className="float-right mb-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick() } } disabled={!enabled}>Crear Estudiante</Button>
                             </div>
                         </div>
                     </div>
