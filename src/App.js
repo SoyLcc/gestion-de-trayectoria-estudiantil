@@ -10,6 +10,7 @@ import adminStudents from './components/admin/AdminStudents';
 import adminSubjects from './components/admin/AdminSubjects';
 import NewPoll from './components/admin/polls/NewPoll';
 import NewStudent from './components/admin/students/NewStudent';
+import EditStudent from './components/admin/students/EditStudent';
 
 export default class App extends React.Component {
 
@@ -25,6 +26,7 @@ export default class App extends React.Component {
         <Route path="/admin/newPoll" exact  component={ NewPoll } />
         <Route path="/admin/students" component={ adminStudents } />
         <Route path="/admin/newStudent" component={ NewStudent } />
+        <Route path="/admin/editStudent" component={ EditStudent } />
         <Route path="/admin/subjects" component={ adminSubjects } />
       </Router>
     )
