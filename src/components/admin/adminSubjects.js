@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavigationLeft from './NavigationLeft'
 import Content from '../utils'
 
-export default class adminSubjects extends Component {
+export default class AdminSubjects extends Component {
     render() {
         return (
             <div className="container-fluid">

@@ -8,7 +8,7 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
 
-export default class adminPolls extends Component {
+export default class AdminPolls extends Component {
     constructor(props) {
         super(props)
         this.state = { 
