@@ -54,7 +54,7 @@ export default class EditStudent extends Component {
     }
 
     render() {
-        const { student_id, name, lastname, password } = this.state;
+        const { student_id, name, lastname } = this.state;
         const enabled = student_id.length > 0 && name.length > 0 && lastname.length > 0;
         return (
             <div className="container">
@@ -105,7 +105,7 @@ export default class EditStudent extends Component {
                             <div className="card-body" style={{display:"flex"}}>
                             </div>
                             <div className="card-footer">
-                                <Button variant="success" size="sm" className="float-right mb-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick() } } disabled={!enabled}>Crear Estudiante</Button>
+                                <Button variant="success" size="sm" className="float-right mb-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick() } } disabled={!enabled}>Guardar Estudiante</Button>
                             </div>
                         </div>
                     </div>
