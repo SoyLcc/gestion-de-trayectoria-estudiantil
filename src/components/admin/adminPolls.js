@@ -58,7 +58,7 @@ export default class adminPolls extends Component {
                             <div className="col-md-2"></div>
                                 <div className="col-md-9">
                                     <div class="card text-center" style={{border: "1px solid rgba(0,0,0,.160)"}}>
-                                        <h5 class="card-header">CRUD Encuestas </h5>
+                                        <h5 class="card-header">Encuestas</h5>
                                         <div class="card-body">
                                             <Link to="/admin/newpoll">
                                                 <Button variant="success" size="sm" className="float-right mb-2">Crear Encuesta</Button>

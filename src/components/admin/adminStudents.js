@@ -28,7 +28,7 @@ export default class AdminStudents extends Component {
     
     async handleClick(type,student) {
         if(type === "delete") {
-            await axios.delete('http://localhost:4000/api/polls/'+student._id)
+            await axios.delete('http://localhost:4000/api/users/'+student._id)
             .then(function (response) {
                 console.log(response);
             })
@@ -75,7 +75,9 @@ export default class AdminStudents extends Component {
                                                                         <td>{student.name}</td>
                                                                         <td>{student.lastname}</td>
                                                                         <td>
-                                                                            <Button variant="warning" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',student) } }>Editar</Button>{' '}
+                                                                            <Link to= {{pathname: "/admin/editStudent", params: student}}>
+                                                                                <Button variant="warning" size="sm">Editar</Button>{' '}
+                                                                            </Link>
                                                                             <Button variant="danger" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',student) } }>Eliminar</Button>
                                                                         </td>
                                                                     </tr>

@@ -4,15 +4,16 @@ import Button from 'react-bootstrap/Button'
 // import styled from 'styled-components';
 import axios from 'axios'
 
-export default class NewStudent extends Component {
+export default class EditStudent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            student_id: "",
-            name: "",
-            lastname: "",
-            password: "",
-            role: false,
+            id: this.props.location.params.id,
+            student_id: this.props.location.params.student_id,
+            name: this.props.location.params.name,
+            lastname: this.props.location.params.lastname,
+            password: null,
+            role: this.props.location.params.role == "user" ? false : true,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -35,7 +36,8 @@ export default class NewStudent extends Component {
       }
     
     handleClick() {
-        axios.post('http://localhost:4000/api/users/', {
+        let id = this.state.id;
+        axios.put('http://localhost:4000/api/users/'+id, {
                 student_id: this.state.student_id,
                 name: this.state.name,
                 lastname: this.state.lastname,
@@ -53,7 +55,7 @@ export default class NewStudent extends Component {
 
     render() {
         const { student_id, name, lastname, password } = this.state;
-        const enabled = student_id.length > 0 && name.length > 0 && lastname.length > 0 && password.length > 0;
+        const enabled = student_id.length > 0 && name.length > 0 && lastname.length > 0;
         return (
             <div className="container">
                 <NavigationLeft/>
