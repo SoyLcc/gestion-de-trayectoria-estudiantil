@@ -5,11 +5,12 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './App';
+import AuthContextProvider from './context/AuthContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <AuthContextProvider>
     <App />
-  </React.StrictMode>,
+  </AuthContextProvider>,
   document.getElementById('root')
 );
 
