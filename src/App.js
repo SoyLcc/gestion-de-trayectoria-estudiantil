@@ -11,6 +11,9 @@ import AdminSubjects from './components/admin/AdminSubjects';
 import NewPoll from './components/admin/polls/Newpoll';
 import NewStudent from './components/admin/students/NewStudent';
 import EditStudent from './components/admin/students/EditStudent';
+import Login from './components/auth/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 
 export default class App extends React.Component {
 
@@ -18,16 +21,18 @@ export default class App extends React.Component {
     return (
       <Router>
         <Navigation/>
-        <Route path="/" exact  component={ StudentHome } />
-        <Route path="/poll" component={ PollsHome } />
-        <Route path="/Profile" component={ ProfileHome } />
+        <Route path="/login" component= { Login }  />
+        
+        <ProtectedRoute path="/" exact  component={ StudentHome } />
+        <ProtectedRoute path="/poll" component={ PollsHome } />
+        <ProtectedRoute path="/Profile" component={ ProfileHome } />
 
-        <Route path="/admin/polls" exact  component={ AdminPolls } />
-        <Route path="/admin/newPoll" exact  component={ NewPoll } />
-        <Route path="/admin/students" component={ AdminStudents } />
-        <Route path="/admin/newStudent" component={ NewStudent } />
-        <Route path="/admin/editStudent" component={ EditStudent } />
-        <Route path="/admin/subjects" component={ AdminSubjects } />
+        <AdminProtectedRoute path="/admin/polls" exact  component={ AdminPolls } />
+        <AdminProtectedRoute path="/admin/newPoll" exact  component={ NewPoll } />
+        <AdminProtectedRoute path="/admin/students" component={ AdminStudents } />
+        <AdminProtectedRoute path="/admin/newStudent" component={ NewStudent } />
+        <AdminProtectedRoute path="/admin/editStudent" component={ EditStudent } />
+        <AdminProtectedRoute path="/admin/subjects" component={ AdminSubjects } />
       </Router>
     )
   }
