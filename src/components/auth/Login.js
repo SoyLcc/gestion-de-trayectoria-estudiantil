@@ -27,9 +27,13 @@ function Login(props) {
                 method: 'POST',
                 url: 'http://localhost:4000/api/users/login',
                 data,
+            }).catch(function (error) {
+                if (error.response) {
+                  throw (error.response.data);
+                }
             });
 
-            if (response.status === 200) {
+            if (response && response.status === 200) {
                 console.log(response);
                 localStorage.setItem('isAuth', 'true');
                 localStorage.setItem('userID', response.data.data.user._id);
@@ -38,12 +42,12 @@ function Login(props) {
                 }
                 setIsAuth(true);
                 history.replace(from);
-            }
+            } 
         } catch (error) {
             return setAlert(
                 <SweetAlert
                     danger
-                    title="Something Wrong.."
+                    title="Lo sentimos.."
                     onConfirm={onConfirm}
                     customButtons={
                         <React.Fragment>
@@ -56,7 +60,7 @@ function Login(props) {
                         </React.Fragment>
                     }
                 >
-                    Student_id and/or password not correct.{' '}
+                Las credenciales que estás usando no son válidas.{' '}
                 </SweetAlert>
             );
         }
@@ -64,6 +68,7 @@ function Login(props) {
 
     return (
         <div className="container">
+            {alert}
             <form className="form-signin" onSubmit={handleSubmit}>
                 <div className="text-center mb-4">
                     <h1 className="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
