@@ -69,23 +69,25 @@ function Login(props) {
     return (
         <div className="container">
             {alert}
-            <form className="form-signin" onSubmit={handleSubmit}>
-                <div className="text-center mb-4">
-                    <h1 className="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
-                </div>
+            <div className="card text-center login-card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
+                <h3 className="card-header">Iniciar Sesión</h3>
+                <div className="card-body">
+                    <form className="form-signin" onSubmit={handleSubmit}>
+                        <div className="form-label-group mb-3">
+                            <label htmlFor="inputEmail">Expediente</label>
+                            <input type="text" id="inputEmail" className="form-control" placeholder="Numero de expediente" required value={data.student_id} onChange={(e) => setData({ ...data, student_id: e.target.value })}/>
+                        </div>
 
-                <div className="form-label-group mb-3">
-                    <label htmlFor="inputEmail">Expediente</label>
-                    <input type="text" id="inputEmail" className="form-control" placeholder="Numero de expediente" required value={data.student_id} onChange={(e) => setData({ ...data, student_id: e.target.value })}/>
-                </div>
+                        <div className="form-label-group">
+                            <label htmlFor="inputPassword">Contraseña</label>
+                            <input type="password" id="inputPassword" className="form-control" placeholder="Contraseña" required  value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })}/>
+                        </div>
 
-                <div className="form-label-group">
-                    <label htmlFor="inputPassword">Contraseña</label>
-                    <input type="password" id="inputPassword" className="form-control" placeholder="Contraseña" required  value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })}/>
+                        <button className="btn btn-lg btn-primary btn-block mt-5" type="submit">Entrar</button>
+                    </form>
                 </div>
-
-                <button className="btn btn-lg btn-primary btn-block mt-5" type="submit">Entrar</button>
-            </form>
+            </div>
+            
         </div>
     );
 }
