@@ -16,11 +16,11 @@ import Login from './components/auth/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import Logout from './components/auth/logout';
+import Poll from './components/polls/Poll';
 
 export default function App() {
     const { isAuth } = useContext(AuthContext);
     const navbar = isAuth ? <Navigation /> : null;
-    console.log(isAuth);
 
     return (
       <Router>
@@ -31,6 +31,8 @@ export default function App() {
         <ProtectedRoute path="/" exact  component={ StudentHome } />
         <ProtectedRoute path="/poll" component={ PollsHome } />
         <ProtectedRoute path="/Profile" component={ ProfileHome } />
+
+        <ProtectedRoute path="/polls/:id" component={ Poll } />
 
         <AdminProtectedRoute path="/admin/polls" exact  component={ AdminPolls } />
         <AdminProtectedRoute path="/admin/newPoll" exact  component={ NewPoll } />
