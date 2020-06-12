@@ -15,6 +15,7 @@ export default class Navigation extends Component {
                     <Link className="nav-link" to="/">Inicio</Link>
                     <Link className="nav-link" to="/poll">Encuestas</Link>
                     <Link className="nav-link" to="/profile">Mi Perfil</Link>
+                    <Link className="nav-link btn btn-secondary ml-2" to="/logout">Cerrar sesión</Link>
                 </Nav>
             </Navbar>
         )
