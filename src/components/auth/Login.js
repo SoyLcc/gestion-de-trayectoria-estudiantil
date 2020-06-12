@@ -27,9 +27,13 @@ function Login(props) {
                 method: 'POST',
                 url: 'http://localhost:4000/api/users/login',
                 data,
+            }).catch(function (error) {
+                if (error.response) {
+                  throw (error.response.data);
+                }
             });
 
-            if (response.status === 200) {
+            if (response && response.status === 200) {
                 console.log(response);
                 localStorage.setItem('isAuth', 'true');
                 localStorage.setItem('userID', response.data.data.user._id);
@@ -38,12 +42,12 @@ function Login(props) {
                 }
                 setIsAuth(true);
                 history.replace(from);
-            }
+            } 
         } catch (error) {
             return setAlert(
                 <SweetAlert
                     danger
-                    title="Something Wrong.."
+                    title="Lo sentimos.."
                     onConfirm={onConfirm}
                     customButtons={
                         <React.Fragment>
@@ -56,7 +60,7 @@ function Login(props) {
                         </React.Fragment>
                     }
                 >
-                    Student_id and/or password not correct.{' '}
+                Las credenciales que estás usando no son válidas.{' '}
                 </SweetAlert>
             );
         }
@@ -64,23 +68,26 @@ function Login(props) {
 
     return (
         <div className="container">
-            <form className="form-signin" onSubmit={handleSubmit}>
-                <div className="text-center mb-4">
-                    <h1 className="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
-                </div>
+            {alert}
+            <div className="card text-center login-card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
+                <h3 className="card-header">Iniciar Sesión</h3>
+                <div className="card-body">
+                    <form className="form-signin" onSubmit={handleSubmit}>
+                        <div className="form-label-group mb-3">
+                            <label htmlFor="inputEmail">Expediente</label>
+                            <input type="text" id="inputEmail" className="form-control" placeholder="Numero de expediente" required value={data.student_id} onChange={(e) => setData({ ...data, student_id: e.target.value })}/>
+                        </div>
 
-                <div className="form-label-group mb-3">
-                    <label htmlFor="inputEmail">Expediente</label>
-                    <input type="text" id="inputEmail" className="form-control" placeholder="Numero de expediente" required value={data.student_id} onChange={(e) => setData({ ...data, student_id: e.target.value })}/>
-                </div>
+                        <div className="form-label-group">
+                            <label htmlFor="inputPassword">Contraseña</label>
+                            <input type="password" id="inputPassword" className="form-control" placeholder="Contraseña" required  value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })}/>
+                        </div>
 
-                <div className="form-label-group">
-                    <label htmlFor="inputPassword">Contraseña</label>
-                    <input type="password" id="inputPassword" className="form-control" placeholder="Contraseña" required  value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })}/>
+                        <button className="btn btn-lg btn-primary btn-block mt-5" type="submit">Entrar</button>
+                    </form>
                 </div>
-
-                <button className="btn btn-lg btn-primary btn-block mt-5" type="submit">Entrar</button>
-            </form>
+            </div>
+            
         </div>
     );
 }

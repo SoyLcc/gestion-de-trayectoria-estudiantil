@@ -1,4 +1,7 @@
 .form-signin {
+    text-align: left;
+}
+.login-card {
     width: 100%;
     max-width: 420px;
     padding: 15px;
