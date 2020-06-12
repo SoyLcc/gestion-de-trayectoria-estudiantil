@@ -1,5 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
 
 import Navigation from './components/Navigation';
 import StudentHome from './components/student/StudentHome';
@@ -14,14 +15,18 @@ import EditStudent from './components/admin/students/EditStudent';
 import Login from './components/auth/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
+import Logout from './components/auth/logout';
 
-export default class App extends React.Component {
+export default function App() {
+    const { isAuth } = useContext(AuthContext);
+    const navbar = isAuth ? <Navigation /> : null;
+    console.log(isAuth);
 
-  render() {
     return (
       <Router>
-        <Navigation/>
+        {navbar}
         <Route path="/login" component= { Login }  />
+        <Route path="/logout" component={ Logout } />
         
         <ProtectedRoute path="/" exact  component={ StudentHome } />
         <ProtectedRoute path="/poll" component={ PollsHome } />
@@ -35,5 +40,4 @@ export default class App extends React.Component {
         <AdminProtectedRoute path="/admin/subjects" component={ AdminSubjects } />
       </Router>
     )
-  }
 }
