@@ -21,9 +21,14 @@ const CardContainer = styled.div`
   text-align: center;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif !important;
+  flex-basis: ${props => props.theme.flexbasis};
+  margin-left: ${props => props.theme.marginleft};
+  font-size: ${props => props.theme.fontsize};
+  width: ${props => props.theme.width} !important;
+  height: ${props => props.theme.heigth} !important;
 `;
 
-const SubjectCard = ({ subject }) => {
+const SubjectCard = ({ subject, styles }) => {
   let color;
   if(subject.axis === AXIS.BASICO) {
     color = "#F8F8F9";
@@ -41,7 +46,7 @@ const SubjectCard = ({ subject }) => {
     color = "#9962F8";
   }
   return (
-    <CardContainer style={{backgroundColor:color}}>
+    <CardContainer style={{backgroundColor:color}} theme={styles}>
       { subject.name }
     </CardContainer>
   );
