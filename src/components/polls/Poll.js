@@ -4,6 +4,7 @@ import Content from '../utils';
 import styled from "styled-components";
 import SubjectCard from '../student/SubjectCard'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 import "./poll.css"
 
@@ -83,7 +84,7 @@ export default class Poll extends Component {
                         <div className="card-footer">
                             <button type="button" className="btn btn-primary float-right mr-2">Terminar mi votación</button>
                             <button type="button" className="btn btn-primary float-right mx-2">Proponer materia</button>
-                            <button type="button" className="btn btn-primary float-right">Atras</button>
+                            <Link className="btn btn-primary float-right" to="/poll">Atras</Link>
                         </div>
                     </div>
                 </div>
