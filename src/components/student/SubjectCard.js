@@ -21,11 +21,11 @@ const CardContainer = styled.div`
   text-align: center;
   border-radius: 5px;
   font-family: 'Roboto', sans-serif !important;
-  flex-basis: ${props => props.theme.flexbasis};
-  margin-left: ${props => props.theme.marginleft};
+  margin: ${props => props.theme.margin};
   font-size: ${props => props.theme.fontsize};
   width: ${props => props.theme.width} !important;
   height: ${props => props.theme.heigth} !important;
+  padding: 5px;
 `;
 
 const SubjectCard = ({ subject, styles }) => {
