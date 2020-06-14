@@ -4,25 +4,28 @@ import Content from '../utils';
 import styled from "styled-components";
 import SubjectCard from '../student/SubjectCard'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 import "./poll.css"
 
-const ContainerCardstyles = {
+const ContainerStyles = {
     flexbasis: "20%",
     marginleft: "20px",
-    fontsize: "14px",
+    fontsize: "11px",
     width: "130px",
     heigth: "60px",
-    hoverborder: "3px solid"
+    hoverborder: "3px solid",
+    padding: "10px",
+    margin: "0px"
 }
 const SubjectsList = styled.div`
-    margin: 0 20px 0 20px;
-    justify-content: space-between;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    align-items: center;  
-    flex-basis: 33%;       
-    
+    justify-content: start;
+    align-items: center;    
+    flex-flow: row-wrap;
 `;
 
 export default class Poll extends Component {
@@ -30,10 +33,28 @@ export default class Poll extends Component {
         super(props)
         this.state = { 
             poll: {} ,
-            subjects: []
+            subjects: [],
+            selectedStates:[],
         }
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+    handleSubmit() {
+        let votedSubjects = [];
+        this.state.subjects.forEach((subject,i) => {
+            if(this.state.selectedStates[i] === true){
+                votedSubjects.push(subject)
+            }
+        });
+        console.log(votedSubjects);
+    }
+
+    handleClick(subject, index) {
+        let selectedStates = this.state.selectedStates
+        selectedStates[index] = !selectedStates[index]
+        this.setState({ selectedStates })
+    }
+
     async loadData() {
         const { id } = this.props.match.params
         try {
@@ -45,7 +66,8 @@ export default class Poll extends Component {
             if (response.status === 200) {
                 this.setState({
                     poll: response.data,
-                    subjects: response.data.subjects
+                    subjects: response.data.subjects,
+                    selectedStates: new Array(response.data.subjects.length).fill(false)
                 })
             }
         } catch (error) {
@@ -56,7 +78,6 @@ export default class Poll extends Component {
     componentDidMount() {
         this.loadData()
     }
-    
 
     render() {
         const { poll, subjects } = this.state;
@@ -72,18 +93,21 @@ export default class Poll extends Component {
                                 <SubjectsList>
                                     { poll !== {} &&
                                         subjects.map((subject, i) => {
+                                            let isSelected = this.state.selectedStates[i];
+                                            const backgroundColor = isSelected ? {backgroundColor:"red"}:{};
                                             return (
-                                                <SubjectCard key={i} subject={subject} styles={ContainerCardstyles} />
+                                                <div className="one-card" key={i} onClick={() => this.handleClick(subject, i)} style={backgroundColor}>
+                                                    <SubjectCard subject={subject} styles={ContainerStyles}/>
+                                                </div>
                                             )
-                                        })
+                                        },this)
                                     }
                                 </SubjectsList>
                             </div>
                         </div>
                         <div className="card-footer">
-                            <button type="button" className="btn btn-primary float-right mr-2">Terminar mi votación</button>
-                            <button type="button" className="btn btn-primary float-right mx-2">Proponer materia</button>
-                            <button type="button" className="btn btn-primary float-right">Atras</button>
+                            <button type="submit" className="btn btn-primary float-right mr-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() } }>Terminar mi votación</button>
+                            <Link className="btn btn-primary float-right mr-2" to="/poll">Atras</Link>
                         </div>
                     </div>
                 </div>
