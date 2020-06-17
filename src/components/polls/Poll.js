@@ -32,6 +32,7 @@ export default class Poll extends Component {
     constructor(props) {
         super(props)
         this.state = { 
+            userId: "",
             poll: {} ,
             subjects: [],
             selectedStates:[],
@@ -46,7 +47,18 @@ export default class Poll extends Component {
                 votedSubjects.push(subject)
             }
         });
-        console.log(votedSubjects);
+        axios.post('http://localhost:4000/api/votes/', {
+                user: this.state.userId,
+                poll: this.state.poll._id,
+                subjects: votedSubjects
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        this.props.history.goBack();
     }
 
     handleClick(subject, index) {
@@ -57,6 +69,7 @@ export default class Poll extends Component {
 
     async loadData() {
         const { id } = this.props.match.params
+        const userId = localStorage.getItem("userID")
         try {
             const response = await axios({
                 method: 'GET',
@@ -64,15 +77,20 @@ export default class Poll extends Component {
             });
 
             if (response.status === 200) {
+               
                 this.setState({
+                    userId: userId,
                     poll: response.data,
                     subjects: response.data.subjects,
                     selectedStates: new Array(response.data.subjects.length).fill(false)
                 })
             }
+
         } catch (error) {
             
         }
+
+       
     }
     
     componentDidMount() {
