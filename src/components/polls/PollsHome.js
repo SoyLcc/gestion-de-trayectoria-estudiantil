@@ -18,7 +18,7 @@ export default class PollsHome extends Component {
             });
 
             if (response.status === 200) {
-                console.log(response.data);
+                // console.log(response.data);
                 this.setState({
                     polls: response.data
                 })
