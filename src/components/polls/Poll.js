@@ -32,14 +32,16 @@ export default class Poll extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            userId: "",
+            userID: "",
             poll: {} ,
             subjects: [],
             selectedStates:[],
+            alreadyVotedSubjects: []
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    
     handleSubmit() {
         let votedSubjects = [];
         this.state.subjects.forEach((subject,i) => {
@@ -47,17 +49,18 @@ export default class Poll extends Component {
                 votedSubjects.push(subject)
             }
         });
+
         axios.post('http://localhost:4000/api/votes/', {
-                user: this.state.userId,
-                poll: this.state.poll._id,
-                subjects: votedSubjects
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            user: this.state.userID,
+            poll: this.state.poll._id,
+            subjects: votedSubjects
+        })
+        .then(function (response) {
+            // console.log(response);
+        })
+        .catch(function (error) {
+            // console.log(error);
+        });
         this.props.history.goBack();
     }
 
@@ -69,17 +72,21 @@ export default class Poll extends Component {
 
     async loadData() {
         const { id } = this.props.match.params
-        const userId = localStorage.getItem("userID")
+        const userID = localStorage.getItem("userID")
+        this.loadPolls(id,userID);
+        this.checkIfAlreadyVoted(id,userID);
+    }
+    
+    async loadPolls(pollID,userID){
         try {
             const response = await axios({
                 method: 'GET',
-                url: 'http://localhost:4000/api/polls/'+id,
+                url: 'http://localhost:4000/api/polls/'+pollID,
             });
 
             if (response.status === 200) {
-               
                 this.setState({
-                    userId: userId,
+                    userID: userID,
                     poll: response.data,
                     subjects: response.data.subjects,
                     selectedStates: new Array(response.data.subjects.length).fill(false)
@@ -89,8 +96,38 @@ export default class Poll extends Component {
         } catch (error) {
             
         }
+    }
+    async checkIfAlreadyVoted(pollID,userID){
+        try {
+            const response = await axios.get('http://localhost:4000/api/votes/myvotes', { 
+                params: {
+                    poll: pollID,
+                    user: userID
+                }
+            });
+            
+            if (response.status === 200) {
+                let list1 = response.data;
+                let list2 = this.state.subjects;
+                let selectedStates = this.state.selectedStates;
+            
+                list1.filter(a => {
+                    list2.some((b,index) => {
+                        if(a.key === b.key) {
+                            selectedStates[index] = !selectedStates[index]
+                        }
+                    })
+                })
+                this.setState({
+                    alreadyVotedSubjects: response.data,
+                    selectedStates: selectedStates
+                })
+            }
+            
 
-       
+        } catch (error) {
+            
+        }
     }
     
     componentDidMount() {
@@ -98,8 +135,8 @@ export default class Poll extends Component {
     }
 
     render() {
-        const { poll, subjects } = this.state;
-        const enabled = false;
+        const { poll, subjects, selectedStates } = this.state;
+        const enabled = selectedStates.includes(true);
         return (
             <Content>
                 <div className="container">
@@ -124,7 +161,7 @@ export default class Poll extends Component {
                             </div>
                         </div>
                         <div className="card-footer">
-                            <button type="submit" className="btn btn-primary float-right mr-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() } }>Terminar mi votación</button>
+                            <button type="submit" className="btn btn-primary float-right mr-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() }} disabled={!enabled}>Terminar mi votación</button>
                             <Link className="btn btn-primary float-right mr-2" to="/poll">Atras</Link>
                         </div>
                     </div>
