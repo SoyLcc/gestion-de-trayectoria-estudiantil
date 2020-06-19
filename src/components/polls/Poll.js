@@ -5,7 +5,7 @@ import styled from "styled-components";
 import SubjectCard from '../student/SubjectCard'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
-
+import HorizontalBarExample from './horizontalBar';
 import "./poll.css"
 
 const ContainerStyles = {
@@ -159,6 +159,9 @@ export default class Poll extends Component {
                                     }
                                 </SubjectsList>
                             </div>
+                        </div>
+                        <div className="card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
+                            <HorizontalBarExample />
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-primary float-right mr-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() }} disabled={!enabled}>Terminar mi votación</button>
