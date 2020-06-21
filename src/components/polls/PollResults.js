@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Content from '../utils';
 import { Link } from 'react-router-dom'
-import HorizontalBarExample from './horizontalBar';
 import "./poll.css"
 import { Chart, defaults, HorizontalBar, Bar } from 'react-chartjs-2';
 
