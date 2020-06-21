@@ -5,7 +5,6 @@ import styled from "styled-components";
 import SubjectCard from '../student/SubjectCard'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
-
 import "./poll.css"
 
 const ContainerStyles = {

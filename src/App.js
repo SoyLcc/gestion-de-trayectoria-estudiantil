@@ -17,6 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import Logout from './components/auth/logout';
 import Poll from './components/polls/Poll';
+import PollResults from './components/polls/PollResults';
 
 export default function App() {
     const { isAuth } = useContext(AuthContext);
@@ -28,11 +29,12 @@ export default function App() {
         <Route path="/login" component= { Login }  />
         <Route path="/logout" component={ Logout } />
         
-        <ProtectedRoute path="/" exact  component={ StudentHome } />
+        <ProtectedRoute path="/" exact component={ StudentHome } />
         <ProtectedRoute path="/poll" component={ PollsHome } />
         <ProtectedRoute path="/Profile" component={ ProfileHome } />
 
-        <ProtectedRoute path="/polls/:id" component={ Poll } />
+        <ProtectedRoute path="/polls/:id" exact component={ Poll } />
+        <ProtectedRoute path="/polls/:id/results" exact component={ PollResults } />
 
         <AdminProtectedRoute path="/admin/polls" exact  component={ AdminPolls } />
         <AdminProtectedRoute path="/admin/newPoll" exact  component={ NewPoll } />

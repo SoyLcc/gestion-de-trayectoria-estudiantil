@@ -38,7 +38,8 @@ export default class PollsHome extends Component {
                 <h5 className="card-header">{poll.title}</h5>
                 <div className="card-body">
                     <p className="card-text">{poll.description}</p>
-                    <Link className="btn btn-secondary" to={`/polls/${poll._id}`}>Abrir Encuesta</Link>
+                    <Link className="btn btn-secondary" to={`/polls/${poll._id}`}>Abrir Encuesta</Link>{' '}
+                    <Link className="btn btn-secondary" to={`/polls/${poll._id}/results`}>Resultados</Link>
                 </div>
             </div>
         );
