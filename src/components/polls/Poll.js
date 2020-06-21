@@ -160,9 +160,6 @@ export default class Poll extends Component {
                                 </SubjectsList>
                             </div>
                         </div>
-                        <div className="card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
-                            <HorizontalBarExample />
-                        </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-primary float-right mr-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() }} disabled={!enabled}>Terminar mi votación</button>
                             <Link className="btn btn-primary float-right mr-2" to="/poll">Atras</Link>
