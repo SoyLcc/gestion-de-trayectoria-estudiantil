@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import axios from 'axios';
 import './loginStyles.css';
+import { API_URL } from '../../App'
 
 function Login(props) {
     const [data, setData] = useState({ student_id: '', password: '' });
@@ -25,7 +26,7 @@ function Login(props) {
         try {
             const response = await axios({
                 method: 'POST',
-                url: 'http://localhost:4000/api/users/login',
+                url: `${API_URL}/users/login`,
                 data,
             }).catch(function (error) {
                 if (error.response) {

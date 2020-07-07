@@ -6,6 +6,7 @@ import SubjectCard from '../student/SubjectCard'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import "./poll.css"
+import { API_URL } from '../../App'
 
 const ContainerStyles = {
     flexbasis: "20%",
@@ -48,8 +49,8 @@ export default class Poll extends Component {
                 votedSubjects.push(subject)
             }
         });
-
-        axios.post('http://localhost:4000/api/votes/', {
+        
+        axios.post(`${API_URL}/votes`, {
             user: this.state.userID,
             poll: this.state.poll._id,
             subjects: votedSubjects
@@ -80,7 +81,7 @@ export default class Poll extends Component {
         try {
             const response = await axios({
                 method: 'GET',
-                url: 'http://localhost:4000/api/polls/'+pollID,
+                url: `${API_URL}/polls/${pollID}`,
             });
 
             if (response.status === 200) {
@@ -98,7 +99,7 @@ export default class Poll extends Component {
     }
     async checkIfAlreadyVoted(pollID,userID){
         try {
-            const response = await axios.get('http://localhost:4000/api/votes/myvotes', { 
+            const response = await axios.get(`${API_URL}/votes/myvotes`, { 
                 params: {
                     poll: pollID,
                     user: userID

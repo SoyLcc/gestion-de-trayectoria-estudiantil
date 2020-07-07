@@ -4,6 +4,7 @@ import Content from '../utils';
 import { Link } from 'react-router-dom'
 import "./poll.css"
 import { Chart, defaults, HorizontalBar, Bar } from 'react-chartjs-2';
+import { API_URL } from '../../App'
 
 const options = {
     legend: {
@@ -73,7 +74,7 @@ export default class PollResults extends Component {
         try {
             const response = await axios({
                 method: 'GET',
-                url: 'http://localhost:4000/api/polls/'+pollID,
+                url: `${API_URL}/polls/${pollID}`,
             });
 
             if (response.status === 200) {
@@ -88,7 +89,7 @@ export default class PollResults extends Component {
     }
     async loadResults(pollID){
         try {
-            const response = await axios.get('http://localhost:4000/api/votes/'+pollID);
+            const response = await axios.get(`${API_URL}/votes/${pollID}`);
             
             if (response.status === 200) {
                 let subjects = response.data;

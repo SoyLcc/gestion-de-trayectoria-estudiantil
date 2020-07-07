@@ -3,6 +3,7 @@ import axios from 'axios';
 // import styled from 'styled-components';
 import Content from '../utils';
 import { Link } from 'react-router-dom'
+import { API_URL } from '../../App';
 
 export default class PollsHome extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class PollsHome extends Component {
         try {
             const response = await axios({
                 method: 'GET',
-                url: 'http://localhost:4000/api/polls',
+                url: `${API_URL}/polls`,
             });
 
             if (response.status === 200) {

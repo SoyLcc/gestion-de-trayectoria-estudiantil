@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import axios from 'axios';
+import { API_URL } from '../../App'
 
 function Logout(props) {
   const { setIsAuth } = useContext(AuthContext);
@@ -13,7 +14,7 @@ function Logout(props) {
       try {
         const response = await axios({
           method: 'GET',
-          url: 'http://localhost:4000/api/users/logout',
+          url: `${API_URL}/users/logout`,
         });
         //User will receive an invalid token as the response
 

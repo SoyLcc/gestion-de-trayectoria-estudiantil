@@ -5,6 +5,7 @@ import NavigationLeft from '../NavigationLeft'
 import Button from 'react-bootstrap/Button'
 // import styled from 'styled-components';
 import axios from 'axios'
+import { API_URL } from '../../../App';
 
 export default class NewPoll extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ export default class NewPoll extends Component {
     }
     
     handleClick() {
-        axios.post('http://localhost:4000/api/polls/', {
+        axios.post(`${API_URL}/polls/`, {
                 title: this.state.title,
                 description: this.state.description,
                 isActive: true,

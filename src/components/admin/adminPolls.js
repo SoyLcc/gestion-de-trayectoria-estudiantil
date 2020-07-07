@@ -6,6 +6,7 @@ import NavigationLeft from './NavigationLeft'
 import Content from '../utils'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import { API_URL } from '../../App'
 
 
 export default class AdminPolls extends Component {
@@ -18,7 +19,7 @@ export default class AdminPolls extends Component {
     }
 
     loadData = async () => {
-        const res = await axios.get('http://localhost:4000/api/polls/');
+        const res = await axios.get(`${API_URL}/polls/`);
         this.setState({polls:res.data});
     }
     
@@ -28,7 +29,7 @@ export default class AdminPolls extends Component {
     
     async handleClick(type,poll) {
         if(type === "delete") {
-            await axios.delete('http://localhost:4000/api/polls/'+poll._id)
+            await axios.delete(`${API_URL}/polls/${poll._id}`)
             .then(function (response) {
                 console.log(response);
             })
@@ -37,7 +38,7 @@ export default class AdminPolls extends Component {
             });
         }
         if(type === "status") {
-            await axios.put('http://localhost:4000/api/polls/'+poll._id, {isActive: !poll.isActive})
+            await axios.put(`${API_URL}/polls/${poll._id}`, {isActive: !poll.isActive})
             .then(function (response) {
                 console.log(response);
             })

@@ -3,6 +3,7 @@ import NavigationLeft from '../NavigationLeft'
 import Button from 'react-bootstrap/Button'
 // import styled from 'styled-components';
 import axios from 'axios'
+import { API_URL } from '../../../App'
 
 export default class EditStudent extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ export default class EditStudent extends Component {
     
     handleClick() {
         let id = this.state.id;
-        axios.put('http://localhost:4000/api/users/'+id, {
+        axios.put(`${API_URL}/users/${id}`, {
                 student_id: this.state.student_id,
                 name: this.state.name,
                 lastname: this.state.lastname,

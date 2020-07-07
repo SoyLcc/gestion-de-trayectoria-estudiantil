@@ -3,6 +3,7 @@ import NavigationLeft from '../NavigationLeft'
 import Button from 'react-bootstrap/Button'
 // import styled from 'styled-components';
 import axios from 'axios'
+import { API_URL } from '../../../App'
 
 export default class NewStudent extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ export default class NewStudent extends Component {
       }
     
     handleClick() {
-        axios.post('http://localhost:4000/api/users/', {
+        axios.post(`${API_URL}/users/`, {
                 student_id: this.state.student_id,
                 name: this.state.name,
                 lastname: this.state.lastname,

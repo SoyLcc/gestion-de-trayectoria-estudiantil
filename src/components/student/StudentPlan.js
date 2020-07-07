@@ -32,7 +32,7 @@ export default class StudentPlan extends React.Component {
     // this.setState({users:res.data});
     // console.log(this.state.users);
 
-    fetch('http://www.mocky.io/v2/5ed6b21d340000b9e006dbea')
+    fetch('https://www.mocky.io/v2/5ed6b21d340000b9e006dbea')
       .then(response => response.json())
       .then(data => {
         console.log(data);

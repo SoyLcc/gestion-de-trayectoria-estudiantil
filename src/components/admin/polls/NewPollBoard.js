@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import axios from 'axios'
 import './BoardStyles.css';
+import { API_URL } from '../../../App';
 
 const axis = ['Eje Común','Eje Basico','Eje Profesional','Eje Especializante','Eje Integrador'];
 
@@ -75,7 +76,7 @@ export default class NewPollBoard extends Component {
       }
     
     async loadData() {
-        const res = await axios.get('http://localhost:4000/api/subjects/')
+        const res = await axios.get(`${API_URL}/subjects/`)
         this.setState({subjects:res.data});
         console.log(this.state.subjects);
         let common = this.state.subjects.filter(subject => subject.axis === "C" );

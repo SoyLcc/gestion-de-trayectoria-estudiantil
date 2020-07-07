@@ -6,6 +6,7 @@ import NavigationLeft from './NavigationLeft'
 import Content from '../utils'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import { API_URL } from '../../App'
 
 
 export default class AdminStudents extends Component {
@@ -18,7 +19,7 @@ export default class AdminStudents extends Component {
     }
 
     loadData = async () => {
-        const res = await axios.get('http://localhost:4000/api/users/');
+        const res = await axios.get(`${API_URL}/users/`);
         this.setState({students:res.data});
     }
     
@@ -28,7 +29,7 @@ export default class AdminStudents extends Component {
     
     async handleClick(type,student) {
         if(type === "delete") {
-            await axios.delete('http://localhost:4000/api/users/'+student._id)
+            await axios.delete(`${API_URL}/users/${student._id}`)
             .then(function (response) {
                 console.log(response);
             })
