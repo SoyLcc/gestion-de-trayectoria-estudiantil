@@ -83,13 +83,13 @@ export default class AdminPolls extends Component {
                                                                         <td>{poll.title}</td>
                                                                         <td>{poll.description}</td>
                                                                         <td>
-                                                                            <Button variant="primary" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('status',poll) } }>
+                                                                            <Button variant="primary" className="btn-lg btn-block mb-1" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('status',poll) } }>
                                                                                 {poll.isActive ? "Cerrar" : "Abrir"}
                                                                             </Button>{' '}
                                                                             {' '}
-                                                                            <Button variant="primary" size="sm">Resultados</Button>{' '}
-                                                                            <Button variant="warning" size="sm">Editar</Button>{' '}
-                                                                            <Button variant="danger" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',poll) } }>Eliminar</Button>
+                                                                            <Button variant="primary" className="btn-lg btn-block mb-1" size="sm">Resultados</Button>{' '}
+                                                                            <Button variant="warning" className="btn-lg btn-block mb-1" size="sm">Editar</Button>{' '}
+                                                                            <Button variant="danger" className="btn-lg btn-block mb-1" size="sm" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',poll) } }>Eliminar</Button>
                                                                         </td>
                                                                     </tr>
                                                                 )
