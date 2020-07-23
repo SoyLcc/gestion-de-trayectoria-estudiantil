@@ -199,7 +199,7 @@ export default class PollResults extends Component {
                         <div className="card-body">
                             <div className="card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
                                 <article className={`animate__animated animate__fadeInLeft animate__faster poll`} style={{ textAlign: customStyles.align, alignItems: this.alignPoll(customStyles.align) }}>
-                                <h3 className="question">Resultados</h3>
+                                <h3 className="question">Porcentaje de Interesados Por Materia</h3>
                                     <ul className="answers">
                                     { subjectVotesPerArray.map((subjectVotes,i) => (
                                         <li key={i}>
@@ -226,24 +226,5 @@ export default class PollResults extends Component {
                 </div>
             </Content>
         )
-        // return (
-        //     <Content>
-        //         <div className="container">
-        //             <div className="card text-center" style={{border: "1px solid rgba(0,0,0,.160)"}}>
-        //                 <h5 className="card-header">{poll.title}</h5>
-        //                 <div className="card-body">
-        //                     <div className="card pt-4" style={{border: "1px solid rgba(0,0,0,.160)"}}>
-        //                         {data &&
-        //                             <Bar data={data} width={100} height={50} options={options}/>
-        //                         }
-        //                     </div>
-        //                 </div>
-        //                 <div className="card-footer">
-        //                     <Link className="btn btn-primary float-right mr-2" to="/poll">Atras</Link>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </Content>
-        // )
     }
 }
