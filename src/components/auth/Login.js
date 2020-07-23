@@ -69,6 +69,7 @@ function Login(props) {
 
     return (
         <div className="container">
+            <h3 className="display-5 mb-5 title">Gestion De Trayectoria Estudiantil</h3>
             {alert}
             <div className="card text-center login-card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
                 <h3 className="card-header">Iniciar Sesión</h3>
