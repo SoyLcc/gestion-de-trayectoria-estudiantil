@@ -23,7 +23,6 @@ const SubjectsList = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    justify-content: start;
     align-items: center;    
     flex-flow: row-wrap;
 `;
@@ -161,7 +160,7 @@ export default class Poll extends Component {
                             </div>
                         </div>
                         <div className="card-footer">
-                            <button type="submit" className="btn btn-primary float-right mr-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() }} disabled={!enabled}>Terminar mi votación</button>
+                            <button type="submit" className="btn btn-primary float-right m-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() }} disabled={!enabled}>Terminar mi votación</button>
                             <Link className="btn btn-primary float-right mr-2" to="/poll">Atras</Link>
                         </div>
                     </div>
