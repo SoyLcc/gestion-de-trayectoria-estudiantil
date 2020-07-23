@@ -3,21 +3,26 @@ import { Link } from 'react-router-dom'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import './navigationStyles.css'
 
 export default class Navigation extends Component {
     render() {
         return (
-            <Navbar bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" fixed="top">
                 <Link to="/">
-                    <Navbar.Brand>Gestion De Trayectoria Estudiantil</Navbar.Brand>
+                    <Navbar.Brand className="brand1">Gestion De Trayectoria Estudiantil</Navbar.Brand>
                 </Link>
-                <Nav className="ml-auto">
-                    <Link className="nav-link" to="/">Inicio</Link>
-                    <Link className="nav-link" to="/poll">Encuestas</Link>
-                    <Link className="nav-link" to="/profile">Mi Perfil</Link>
-                    <Link className="nav-link btn btn-secondary ml-2" to="/logout">Cerrar sesión</Link>
-                </Nav>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="ml-auto">
+                        <Link className="nav-link" to="/">Inicio</Link>
+                        <Link className="nav-link" to="/poll">Encuestas</Link>
+                        <Link className="nav-link" to="/profile">Mi Perfil</Link>
+                        <Link className="nav-link btn btn-secondary ml-2" to="/logout">Cerrar sesión</Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         )
     }
 }
+
