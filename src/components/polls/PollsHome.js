@@ -49,11 +49,10 @@ export default class PollsHome extends Component {
     render() {
         return (
             <Content>
-                <div className="container">
                     {
                         this.state.polls.map((poll, i) => {
                             return (
-                                <div className="row pt-5"  key={i}>
+                                <div className="row pb-3"  key={i}>
                                     <div className="col-md-2"></div>
                                     <div className="col-md-8">
                                         { this.PollCard(poll) }
@@ -62,7 +61,6 @@ export default class PollsHome extends Component {
                             )
                         })
                     }
-                </div>
             </Content>
         )
     }
