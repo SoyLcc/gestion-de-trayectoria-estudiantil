@@ -82,7 +82,7 @@ export default class AdminSubjects extends Component {
                                     <div className="card text-center" style={{border: "1px solid rgba(0,0,0,.160)"}}>
                                         <h5 className="card-header">Materias</h5>
                                         <div className="card-body">
-                                            <Link to="/admin/newpoll">
+                                            <Link to="/admin/newSubject">
                                                 <Button variant="success" size="sm" className="float-right mb-2">Crear Materia</Button>
                                             </Link>
                                             {this.state.subjects.length !== 0  && 
@@ -108,8 +108,10 @@ export default class AdminSubjects extends Component {
                                                                         <td>{subject.requirements}</td>
                                                                         <td>{this.chooseAxis(subject)}</td>
                                                                         <td className="btn-group ">
-                                                                            <button type="button" class="btn btn-warning">Editar</button>
-                                                                            <button type="button" class="btn btn-danger" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',subject) } }>Eliminar</button>
+                                                                            <Link to= {{pathname: "/admin/editSubject", params: subject}}>
+                                                                                <button type="button" className="btn btn-warning">Editar</button>
+                                                                            </Link>
+                                                                            <button type="button" className="btn btn-danger" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleClick('delete',subject) } }>Eliminar</button>
                                                                         </td>
                                                                     </tr>
                                                                 )
