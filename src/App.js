@@ -18,6 +18,8 @@ import AdminProtectedRoute from './components/AdminProtectedRoute';
 import Logout from './components/auth/logout';
 import Poll from './components/polls/Poll';
 import PollResults from './components/polls/PollResults';
+import NewSubject from './components/admin/Subjects/NewSubject';
+import EditSubject from './components/admin/Subjects/EditSubject';
 
 export default function App() {
     const { isAuth } = useContext(AuthContext);
@@ -42,6 +44,9 @@ export default function App() {
         <AdminProtectedRoute path="/admin/newStudent" component={ NewStudent } />
         <AdminProtectedRoute path="/admin/editStudent" component={ EditStudent } />
         <AdminProtectedRoute path="/admin/subjects" component={ AdminSubjects } />
+        <AdminProtectedRoute path="/admin/newSubject" component={ NewSubject } />
+        <AdminProtectedRoute path="/admin/editSubject" component={ EditSubject } />
+
       </Router>
     )
 }
