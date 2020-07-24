@@ -64,7 +64,7 @@ export default class EditStudent extends Component {
                     <div className="col-2"></div>
                     <div className="col-8">
                         <div className="card text-center" style={{border: "1px solid rgba(0,0,0,.160)"}}>
-                            <h5 className="card-header">Nuevo Estudiante</h5>
+                            <h5 className="card-header">Editar Estudiante</h5>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group row">
