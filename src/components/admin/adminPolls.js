@@ -69,7 +69,7 @@ export default class AdminPolls extends Component {
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Titulo</th>
+                                                            <th>Título</th>
                                                             <th>Descripción</th>
                                                             <th>Acciones</th>
                                                         </tr>

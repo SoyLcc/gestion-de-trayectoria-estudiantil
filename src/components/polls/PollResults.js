@@ -220,7 +220,7 @@ export default class PollResults extends Component {
                             </div>
                         </div>
                         <div className="card-footer">
-                            <Link className="btn btn-primary float-right mr-2" to="/poll">Atras</Link>
+                            <Link className="btn btn-primary float-right mr-2" to="/poll">Atrás</Link>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ export default class Navigation extends Component {
         return (
             <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" fixed="top">
                 <Link to="/">
-                    <Navbar.Brand className="brand1">Gestion De Trayectoria Estudiantil</Navbar.Brand>
+                    <Navbar.Brand className="brand1">Gestión De Trayectoria Estudiantil</Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

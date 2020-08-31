@@ -28,6 +28,7 @@ export default class AdminSubjects extends Component {
     loadData = async () => {
         const res = await axios.get(`${API_URL}/subjects/`);
         this.setState({subjects:res.data});
+
     }
     
     componentDidMount() {
@@ -50,10 +51,10 @@ export default class AdminSubjects extends Component {
     chooseAxis(subject){
         let axis;
         if(subject.axis === AXIS.BASICO) {
-            axis = "Basico";
+            axis = "Básico";
         }
         if(subject.axis === AXIS.COMUN) {
-            axis = "Comun";
+            axis = "Común";
         }
         if(subject.axis === AXIS.PROFESIONAL) {
             axis = "Profesional";
@@ -100,6 +101,7 @@ export default class AdminSubjects extends Component {
                                                     <tbody>
                                                         {   
                                                             this.state.subjects.map((subject, i) => {
+                                                            
                                                                 return (
                                                                     <tr key={i}>
                                                                         <td>{subject.key}</td>

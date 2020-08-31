@@ -161,7 +161,7 @@ export default class Poll extends Component {
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-primary float-right m-2" onClick={() => { if (window.confirm('Usted confirma esta acción?')) this.handleSubmit() }} disabled={!enabled}>Terminar mi votación</button>
-                            <Link className="btn btn-primary float-right m-2" to="/poll">Atras</Link>
+                            <Link className="btn btn-primary float-right m-2" to="/poll">Atrás</Link>
                         </div>
                     </div>
                 </div>
