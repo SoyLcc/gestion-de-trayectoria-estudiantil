@@ -45,6 +45,7 @@ function Login(props) {
                 history.replace(from);
             } 
         } catch (error) {
+            console.log(error)
             return setAlert(
                 <SweetAlert
                     danger
@@ -69,15 +70,15 @@ function Login(props) {
 
     return (
         <div className="container">
-            <h3 className="display-5 mb-5 title">Gestion De Trayectoria Estudiantil</h3>
+            <h3 className="display-5 mb-5 title">Gestión De Trayectoria Estudiantil</h3>
             {alert}
             <div className="card text-center login-card" style={{border: "1px solid rgba(0,0,0,.160)"}}>
-                <h3 className="card-header">Iniciar Sesión</h3>
+                <h3 className="card-header">Iniciar sesión</h3>
                 <div className="card-body">
                     <form className="form-signin" onSubmit={handleSubmit}>
                         <div className="form-label-group mb-3">
                             <label htmlFor="inputEmail">Expediente</label>
-                            <input type="text" id="inputEmail" className="form-control" placeholder="Numero de expediente" required value={data.student_id} onChange={(e) => setData({ ...data, student_id: e.target.value })}/>
+                            <input type="text" id="inputEmail" className="form-control" placeholder="Número de expediente" required value={data.student_id} onChange={(e) => setData({ ...data, student_id: e.target.value })}/>
                         </div>
 
                         <div className="form-label-group">

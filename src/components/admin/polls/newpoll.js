@@ -61,7 +61,7 @@ export default class NewPoll extends Component {
                                     <div className="card-body pb-0">
                                         <form>
                                             <div className="form-group row">
-                                                <label htmlfor="staticEmail" className="col-sm-2 col-form-label">Titulo:</label>
+                                                <label htmlfor="staticEmail" className="col-sm-2 col-form-label">Título:</label>
                                                 <div className="col-sm-10">
                                                     <input name="title" type="text" className="form-control" value={this.state.title} onChange={ this.handleChange}/>
                                                 </div>
